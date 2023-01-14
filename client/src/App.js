@@ -32,7 +32,7 @@ export default function App () {
   return (
     <div>
       <KaydedilenlerListesi list={[ /* Burası esnek */]} />
-<Route path="/">
+<Route exact path="/">
 <FilmListesi movies={movieList} />
 </Route>
 <Route path="/filmler/:id">
