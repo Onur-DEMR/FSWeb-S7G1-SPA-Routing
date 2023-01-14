@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
 import KaydedilenlerListesi from './Filmler/KaydedilenlerListesi';
+import FilmListesi from './Filmler/FilmListesi';
+import Film from './Filmler/Film';
 
 export default function App () {
   const [saved, setSaved] = useState([]); // Stretch: the ids of "saved" movies
@@ -12,6 +14,7 @@ export default function App () {
       axios
         .get('http://localhost:5001/api/filmler') // Burayı Postman'le çalışın
         .then(response => {
+          setMovieList(response.data);
           // Bu kısmı log statementlarıyla çalışın
           // ve burdan gelen response'u 'movieList' e aktarın
         })
@@ -30,7 +33,7 @@ export default function App () {
     <div>
       <KaydedilenlerListesi list={[ /* Burası esnek */]} />
 <Route path="/">
-<FilmListesi />
+<FilmListesi movies={movieList} />
 </Route>
 <Route path="/filmler/:id">
 <Film />
